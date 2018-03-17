@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ffffff',
         borderStyle: 'solid',
+        marginTop: 10,
+        marginBottom: 20,
         paddingTop: 10,
         paddingBottom: 10,
     },
