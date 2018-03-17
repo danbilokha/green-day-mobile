@@ -3,7 +3,6 @@ import { View, StyleSheet, Text, TextInput } from 'react-native';
 
 const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => (
     <View style={styles.container}>
-        <Text style={styles.label}>{label}</Text>
         <TextInput
             autoCorrect={false}
             onChangeText={onChangeText}
@@ -19,8 +18,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 10,
         width: '100%',
-        borderColor: '#eee',
-        borderBottomWidth: 2,
+        marginBottom: 20,
     },
     label: {
         padding: 5,
@@ -31,6 +29,10 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     input: {
+        borderColor: 'gray',
+        height: 40,
+        borderBottomColor: '#468ee5',
+        borderBottomWidth: 2,
         paddingRight: 5,
         paddingLeft: 5,
         paddingBottom: 2,
