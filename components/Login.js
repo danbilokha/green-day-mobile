@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   ActivityIndicator,
   AsyncStorage,
   KeyboardAvoidingView
@@ -11,6 +12,7 @@ import firebase from 'firebase';
 import { Input } from './Input';
 import { Button } from './Button';
 import { LiveUpdate } from './LiveUpdate';
+import { Header } from './Header';
 
 export default class Login extends React.Component {
     state = {
@@ -33,7 +35,7 @@ export default class Login extends React.Component {
     }
 
     componentDidMount() {
-        AsyncStorage.removeItem('user');
+        // AsyncStorage.removeItem('user');
         this.loadInitialState().done();
     }
   
@@ -82,8 +84,7 @@ export default class Login extends React.Component {
   
       return (
         <View style={styles.form}>
-          <LiveUpdate />
-          <Text style={styles.header}>- LOGIN -</Text>  
+          <Header />
           <Input
             placeholder="Enter your email..."
             label="Email"
@@ -98,16 +99,20 @@ export default class Login extends React.Component {
             value={this.state.password}
           />
           <Button onPress={() => this.onPressSignIn()}>Log in</Button>
+          <LiveUpdate />
+          <LiveUpdate />
         </View>
       );
     }
   
     render() {
       return (
-        <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>  
+        <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+          <ScrollView>
             <View style={styles.container}>
-                {this.renderCurrentState()}
+              {this.renderCurrentState()}
             </View>
+          </ScrollView>
         </KeyboardAvoidingView>
       );
     }
@@ -126,10 +131,11 @@ export default class Login extends React.Component {
     },
     container: {
       flex: 1,
-      padding: 20,
+      padding: 15,
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row',
+      backgroundColor: '#86ddee',
     },
     form: {
       flex: 1,
