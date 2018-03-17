@@ -25,7 +25,7 @@ export default class Login extends React.Component {
     componentWillMount() {
       const firebaseConfig = {
         apiKey: 'AIzaSyDktkqjYjjdtOSj_QgWK1psmuCVFPavuq0',
-        authDomain: 'green-day-app.firebaseapp.com',
+        authDomain: 'green-day-navigation.firebaseapp.com',
       };
   
       firebase.initializeApp(firebaseConfig);
@@ -34,7 +34,7 @@ export default class Login extends React.Component {
         console.log('user: ', user);
 
         if (user) {
-          this.props.navigation.navigate('Dashboard');
+          this.props.navigation.navigate('Entry');
         }
       });
     }
@@ -58,7 +58,7 @@ export default class Login extends React.Component {
           this.setState({
             authenticating: false,
           });
-          this.props.navigation.navigate('Dashboard');
+          this.props.navigation.navigate('Entry');
         })
         .catch(() => {
             alert(123);
@@ -74,7 +74,7 @@ export default class Login extends React.Component {
         console.log('value ', value);
         
         if (value !== null) {
-            this.props.navigation.navigate('Dashboard');
+            this.props.navigation.navigate('Entry');
         }
     };
   

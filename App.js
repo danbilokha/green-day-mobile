@@ -1,12 +1,12 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
 import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import Entry from './components/navigation/Navigation';
 
 const Application = StackNavigator(
     {
         Login: {screen: Login},
-        Dashboard: {screen: Dashboard}
+        Entry: {screen: Entry}
     },
     {
         navigationOptions: {
