@@ -43,24 +43,24 @@ export default class Login extends React.Component {
       this.setState({
         authenticating: true,
       });
-      firebase.auth()
-        .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(r => {
-            AsyncStorage.setItem('user', 'y');
-            console.log('sign in ', r);
-        })
-        .then(() => {
+      // firebase.auth()
+      //   .signInWithEmailAndPassword(this.state.email, this.state.password)
+      //   .then(r => {
+      //       AsyncStorage.setItem('user', 'y');
+      //       console.log('sign in ', r);
+      //   })
+      //   .then(() => {
           this.setState({
             authenticating: false,
           });
-          this.props.navigation.navigate('Profile');
-        })
-        .catch(() => {
-            alert(123);
-            this.setState({
-                authenticating: false,
-              });
-        });
+           this.props.navigation.navigate('Profile');
+      //   })
+      //   .catch(() => {
+      //       alert(123);
+      //       this.setState({
+      //           authenticating: false,
+      //         });
+      //   });
     }
 
     loadInitialState = async () => {

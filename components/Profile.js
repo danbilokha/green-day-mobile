@@ -6,7 +6,7 @@ export class Profile extends React.Component {
     render() {
       return (
             <View style={styles.container}>
-                <Text style={styles.text}>Welcome to the Member Area</Text>  
+                <Text style={styles.text}>Welcome to the Member area, Es</Text>
             </View>
       );
     }
