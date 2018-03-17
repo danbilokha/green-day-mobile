@@ -1,15 +1,17 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Header} from './header/Header';
 import {Body} from './body/Body';
 
 class ProfileScreen extends React.Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Header/>
-                <Body/>
-            </View>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Header/>
+                    <Body/>
+                </View>
+            </ScrollView>
         );
     }
 }
