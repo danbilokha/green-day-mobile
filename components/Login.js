@@ -36,7 +36,7 @@ export default class Login extends React.Component {
     }
 
     componentDidMount() {
-        AsyncStorage.removeItem('user');
+        //AsyncStorage.removeItem('user');
         this.loadInitialState().done();
     }
   
@@ -54,7 +54,7 @@ export default class Login extends React.Component {
           this.setState({
             authenticating: false,
           });
-           this.props.navigation.navigate('Profile');
+           this.props.navigation.navigate('ProfileScreen');
       //   })
       //   .catch(() => {
       //       alert(123);
@@ -70,7 +70,7 @@ export default class Login extends React.Component {
         console.log('value ', value);
         
         if (value !== null) {
-            this.props.navigation.navigate('Profile');
+            this.props.navigation.navigate('ProfileScreen');
         }
     };
   
