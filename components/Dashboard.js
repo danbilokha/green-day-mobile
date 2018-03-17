@@ -1,16 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { TabNavigator, TabBarTop } from 'react-navigation';
+import firebase from 'firebase';
+import Icon from './Icon';
+import ProgressView from './ProgressView';
 
 export class Dashboard extends React.Component {
     render() {
       return (
-            <View style={styles.container}>
-                <Text style={styles.text}>Welcome to the Dashboard</Text>  
-            </View>
+        <View style={styles.container}>
+          <ProgressView />
+        </View>
       );
     }
-  }
+}
 
 export default TabNavigator(
   {
@@ -20,30 +23,67 @@ export default TabNavigator(
     Profile: { screen: Dashboard },
   },
   {
-    // navigationOptions: ({ navigation }) => ({
-    //   tabBarIcon: ({ focused, tintColor }) => {
-    //     const { routeName } = navigation.state;
-    //     let iconName;
-    //     // if (routeName === 'Home') {
-    //     //   iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-    //     // } else if (routeName === 'Settings') {
-    //     //   iconName = `ios-options${focused ? '' : '-outline'}`;
-    //     // }
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
 
-    //     if (routeName === 'Dash') {
-    //       iconName = 'dash';
-    //     }
+        if (routeName === 'Dash') {
+          iconName = 'Dash';
+        }
 
-    //     // You can return any component that you like here! We usually use an
-    //     // icon component from react-native-vector-icons
-    //     return <Ionicons name={iconName} size={25} color={tintColor} />;
-    //   },
-    // }),
-    tabBarComponent: TabBarBottom,
+        if (routeName === 'Home') {
+          iconName = 'Home';
+        }
+
+        if (routeName === 'Notifications') {
+          iconName = 'Notifications';
+        }
+
+        if (routeName === 'Profile') {
+          return (
+            <Image
+              style={styles.image}
+              source={require('../assets/images/avatar.png')}
+            />
+          );
+        }
+
+        return <Icon name={iconName} size={25} fill={tintColor} />;
+      },
+      tabBarLabel: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName = routeName;
+
+        if (routeName === 'Profile') {
+          const user = firebase.auth().currentUser;
+          if (user) {
+            iconName = user.displayName || user.email || routeName;
+          }
+        }
+
+        return <Text style={{textAlign: 'center', fontSize: 10, marginTop: 10}} numberOfLines={1}>{iconName}</Text>
+      },
+    }),
+    tabBarComponent: TabBarTop,
     tabBarPosition: 'top',
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      activeTintColor: '#00AAA5',
+      inactiveTintColor: '#667580',
+      showIcon: true,
+      labelStyle: {
+        fontSize: 7,
+			},
+      style: {
+        backgroundColor: 'transparent',
+        marginTop: 25,
+      },
+      tabBar: {
+        backgroundColor: "#fbfbfb",
+        borderBottomStyle: 'solid',
+        borderBottomWidth: 3,
+        borderBottomColor: "red",
+      },
     },
     animationEnabled: false,
     swipeEnabled: false,
@@ -56,9 +96,14 @@ export default TabNavigator(
     },
     container: {
       flex: 1,
-      padding: 20,
-      alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row',
     },
+    image: {
+      width: 30,
+      height: 30,
+    },
+    tabLabel: {
+      marginTop: 10,
+    }
   });
