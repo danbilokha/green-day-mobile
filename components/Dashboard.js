@@ -1,10 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import {TabNavigator, TabBarTop} from 'react-navigation';
-import firebase from 'firebase';
-import Icon from './Icon';
+import {StyleSheet, View} from 'react-native';
 import ProgressView from './ProgressView';
-import {ProfileScreen} from './ProfileScreen/ProfileScreen';
 
 export class Dashboard extends React.Component {
     render() {
