@@ -1,12 +1,12 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Login from './components/Login';
-import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
 
 const Application = StackNavigator(
   {
-    Home: { screen: Login },
-    Profile: { screen: Profile }
+    Login: { screen: Login },
+    Dashboard: { screen: Dashboard }
   },
   {
     navigationOptions: {
