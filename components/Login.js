@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   ScrollView,
   ActivityIndicator,
   AsyncStorage,
@@ -35,7 +36,7 @@ export default class Login extends React.Component {
     }
 
     componentDidMount() {
-        // AsyncStorage.removeItem('user');
+        AsyncStorage.removeItem('user');
         this.loadInitialState().done();
     }
   
@@ -76,31 +77,37 @@ export default class Login extends React.Component {
     renderCurrentState() {
       if (this.state.authenticating) {
         return (
-          <View style={styles.form}>
+          <View style={styles.formWrapper}>
+            <Header />
             <ActivityIndicator size="large" />
           </View>
         );
       }
   
       return (
-        <View style={styles.form}>
+        <View style={styles.formWrapper}>
           <Header />
-          <Input
-            placeholder="Enter your email..."
-            label="Email"
-            onChangeText={email => this.setState({ email })}
-            value={this.state.email}
-          />
-          <Input
-            placeholder="Enter your password..."
-            label="Password"
-            secureTextEntry={true}
-            onChangeText={password => this.setState({ password })}
-            value={this.state.password}
-          />
-          <Button onPress={() => this.onPressSignIn()}>Log in</Button>
-          <LiveUpdate />
-          <LiveUpdate />
+          <View style={styles.form}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.text}>Sign in</Text>
+              <Text style={styles.textDisabled}>New user registration</Text>
+            </View>
+            <Input
+              keyboardType="email-address"
+              placeholder="Email"
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
+            />
+            <Input
+              placeholder="Password"
+              secureTextEntry={true}
+              onChangeText={password => this.setState({ password })}
+              value={this.state.password}
+            />
+            <Text style={styles.textPassword}>Forget password?</Text>
+            <Button
+              onPress={() => this.onPressSignIn()}>Sign In</Button>
+          </View>
         </View>
       );
     }
@@ -108,11 +115,13 @@ export default class Login extends React.Component {
     render() {
       return (
         <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
-          <ScrollView>
-            <View style={styles.container}>
+          <View style={styles.container}>
               {this.renderCurrentState()}
-            </View>
-          </ScrollView>
+          </View>
+          <Image
+            style={styles.image}
+            source={require('../assets/images/bg.png')}
+          />
         </KeyboardAvoidingView>
       );
     }
@@ -120,24 +129,38 @@ export default class Login extends React.Component {
   
   const styles = StyleSheet.create({
     wrapper: {
-        flex: 1,
-    },
-    header: {
-        fontSize: 24,
-        marginBottom: 60,
-        color: '#333',
-        fontWeight: '700',
-        textAlign: 'center',
+      flex: 1,
+      backgroundColor: '#86ddee',
     },
     container: {
-      flex: 1,
       padding: 15,
       alignItems: 'center',
       justifyContent: 'center',
       flexDirection: 'row',
-      backgroundColor: '#86ddee',
     },
-    form: {
+    formWrapper: {
       flex: 1,
     },
+    form: {
+      padding: 15,
+      backgroundColor: '#ffffff',  
+    },
+    text: {
+      color: '#4a90e2',
+      marginRight: 30,
+    },
+    textDisabled: {
+      color: '#cccccc',
+      fontFamily: 'Lato',
+    },
+    textPassword: {
+      color: '#cccccc',
+      fontFamily: 'Lato',
+      textAlign: 'right',
+    },
+    image: {
+      flex: 1,
+      width: '100%',
+      resizeMode: Image.resizeMode.cover
+    }
   });
