@@ -32,11 +32,15 @@ export default class Login extends React.Component {
   
       firebase.auth().onAuthStateChanged((user) => {
         console.log('user: ', user);
+
+        if (user) {
+          this.props.navigation.navigate('Dashboard');
+        }
       });
     }
 
     componentDidMount() {
-        //AsyncStorage.removeItem('user');
+        AsyncStorage.removeItem('user');
         this.loadInitialState().done();
     }
   
