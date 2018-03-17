@@ -44,24 +44,24 @@ export default class Login extends React.Component {
       this.setState({
         authenticating: true,
       });
-      // firebase.auth()
-      //   .signInWithEmailAndPassword(this.state.email, this.state.password)
-      //   .then(r => {
-      //       AsyncStorage.setItem('user', 'y');
-      //       console.log('sign in ', r);
-      //   })
-      //   .then(() => {
+      firebase.auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(r => {
+            AsyncStorage.setItem('user', 'y');
+            console.log('sign in ', r);
+        })
+        .then(() => {
           this.setState({
             authenticating: false,
           });
-           this.props.navigation.navigate('ProfileScreen');
-      //   })
-      //   .catch(() => {
-      //       alert(123);
-      //       this.setState({
-      //           authenticating: false,
-      //         });
-      //   });
+          this.props.navigation.navigate('Dashboard');
+        })
+        .catch(() => {
+            alert(123);
+            this.setState({
+                authenticating: false,
+              });
+        });
     }
 
     loadInitialState = async () => {
@@ -70,7 +70,7 @@ export default class Login extends React.Component {
         console.log('value ', value);
         
         if (value !== null) {
-            this.props.navigation.navigate('ProfileScreen');
+            this.props.navigation.navigate('Dashboard');
         }
     };
   

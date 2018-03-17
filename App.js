@@ -1,24 +1,24 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import Login from './components/Login';
-import {ProfileScreen} from './components/ProfileScreen/ProfileScreen';
+import Dashboard from './components/Dashboard';
 
 const Application = StackNavigator(
-    {
-        Home: {screen: Login},
-        ProfileScreen: {screen: ProfileScreen}
+  {
+    Login: { screen: Login },
+    Dashboard: { screen: Dashboard }
+  },
+  {
+    navigationOptions: {
+      header: false,
     },
-    {
-        navigationOptions: {
-            header: false,
-        },
-    }
+  }
 );
 
 export default class App extends React.Component {
-    render() {
-        return (
-            <Application/>
-        );
-    }
+  render() {
+    return (
+      <Application />
+    );
+  }
 }
