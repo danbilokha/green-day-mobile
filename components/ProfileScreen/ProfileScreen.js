@@ -1,29 +1,25 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {TabNavigator, TabBarBottom} from 'react-navigation';
-import {Menu} from '../menu/Menu';
+import {Image, StyleSheet, View} from 'react-native';
+import {Header} from './header/Header';
+import {Body} from './body/Body';
 
 class ProfileScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Menu/>
-                <Text style={styles.text}>Welcome to the Member area, Es</Text>
+                <Header/>
+                <Body/>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    text: {
-        color: '#333',
-    },
     container: {
         flex: 1,
-        padding: 20,
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
 });
 
