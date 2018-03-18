@@ -4,11 +4,19 @@ import { addDataPoint } from './remote.calculation';
 import { notify } from '../settings/notification';
 import { store } from './store';
 
-const socket = io.connect('http://10.17.166.219:3001/');
-
 let timeout,
     countShowError = 0,
     countMaxErrorOccured = 1;
+
+const socket = io.connect('http://10.17.166.219:3001/');
+
+socket.on('connect_failed', () => {
+    notify('Network connection was failed.');
+});
+
+socket.on('disconnect', () => {
+    notify('Connection was disconnected.');
+});
 
 axios.get('http://10.17.166.219:3001/api/feed/uids')
     .then(({data: uids_remote}) => {
@@ -18,7 +26,6 @@ axios.get('http://10.17.166.219:3001/api/feed/uids')
         uids.forEach(uid => dataPoints[uid] = []);
 
         store.dispatch({type: 'UIDS', payload: uids});
-
         return [uids, dataPoints];
     })
     .then(([uids, dataPoints]) => {
@@ -31,7 +38,7 @@ axios.get('http://10.17.166.219:3001/api/feed/uids')
 
             store.dispatch({type: 'SORTED_REMOTE_DATA', payload: dataPoints});
 
-            if(countShowError < countMaxErrorOccured) {
+            if (countShowError < countMaxErrorOccured) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
@@ -43,7 +50,7 @@ axios.get('http://10.17.166.219:3001/api/feed/uids')
         });
     })
     .catch(error => {
-        if(countShowError < countMaxErrorOccured) {
+        if (countShowError < countMaxErrorOccured) {
             notify('Network connection was corrupted.');
             countShowError += 1;
         }

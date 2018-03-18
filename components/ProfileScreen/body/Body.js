@@ -33,6 +33,7 @@ class Body extends PureComponent {
     }
 
     render() {
+        console.log(this.state.userData);
         return (
             <View style={styles.container}>
                 <Rewards
@@ -53,8 +54,8 @@ class Body extends PureComponent {
                     <Chart
                         data={this.state.userData}
                         title="Solar Employment Growth"
-                        yAxisTitle="title1"
-                        xAxisTitle="title2"
+                        yAxisTitle="kWh"
+                        xAxisTitle="Time"
                     />
                 </Card>
             </View>

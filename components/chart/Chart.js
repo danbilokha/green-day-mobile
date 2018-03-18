@@ -67,7 +67,7 @@ class Chart extends PureComponent {
             series: [{
                 name: 'Data',
                 data: (function () {
-                    if(!arr || !arr.length) {
+                    if (!arr || !arr.length) {
                         return [];
                     }
 
@@ -78,8 +78,13 @@ class Chart extends PureComponent {
                             y: arr[i] | []
                         });
                     }
-
-                    return data.reverse();
+                    return arr.map((el, index) => {
+                        return {
+                            x: new Date().getUTCMinutes() * index * 1000,
+                            y: el
+                        }
+                    })
+                    //return data.reverse();
                 }())
             }]
         };

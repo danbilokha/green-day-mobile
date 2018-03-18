@@ -2,12 +2,15 @@ import React from 'react';
 import {Dashboard} from '../Dashboard';
 import { Image, StyleSheet, Text, Platform } from 'react-native';
 import firebase from "firebase";
+
 import {ProfileScreen} from '../ProfileScreen/ProfileScreen';
 import {TabBarTop, TabNavigator} from 'react-navigation';
 import Icon from '../Icon';
 import HomeScreen from '../HomeScreen';
 import NotificationScreen from '../NotificationScreen';
 import { store } from '../../app/data/store';
+import '../../app/settings/notification.settings';
+import '../../app/data/remote';
 
 export default TabNavigator(
     {
