@@ -1,14 +1,16 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import {Header} from './header/Header';
-import {Body} from './body/Body';
+import { Image, StyleSheet, View, ScrollView } from 'react-native';
+import { Header } from './header/Header';
+import { Body } from './body/Body';
 
 class ProfileScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header/>
-                <Body/>
+                <ScrollView>
+                    <Header />
+                    <Body />
+                </ScrollView>
             </View>
         );
     }
@@ -23,4 +25,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export {ProfileScreen};
+export { ProfileScreen };

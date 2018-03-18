@@ -1,0 +1,59 @@
+{
+    "eventName": "Sunothon 2018",
+    "stages": [
+        {
+            "id": 1,
+            "status": "past",
+            "year": "2018",
+            "month": "March",
+            "powerProduced": 300,
+            "actualMoneyEarned": 135,
+            "predictedMoneyEarned": null
+        },
+        {
+            "id": 2,
+            "status": "past",
+            "year": "2018",
+            "month": "April",
+            "powerProduced": 450,
+            "actualMoneyEarned": 155,
+            "predictedMoneyEarned": null
+        },
+        {
+            "id": 3,
+            "status": "current",
+            "year": "2018",
+            "month": "May",
+            "powerProduced": null,
+            "actualMoneyEarned": null,
+            "predictedMoneyEarned": 3992
+        },
+        {
+            "id": 4,
+            "status": "upcoming",
+            "year": "2018",
+            "month": "June",
+            "powerProduced": null,
+            "actualMoneyEarned": null,
+            "predictedMoneyEarned": null
+        },
+        {
+            "id": 5,
+            "status": "upcoming",
+            "year": "2018",
+            "month": "July",
+            "powerProduced": null,
+            "actualMoneyEarned": null,
+            "predictedMoneyEarned": null
+        },
+        {
+            "id": 6,
+            "status": "upcoming",
+            "year": "2018",
+            "month": "August",
+            "powerProduced": null,
+            "actualMoneyEarned": null,
+            "predictedMoneyEarned": null
+        }
+    ]
+}
