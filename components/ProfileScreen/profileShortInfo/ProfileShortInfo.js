@@ -1,11 +1,11 @@
-import React, {PureComponent} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import React, { PureComponent } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 class ProfileShortInfo extends PureComponent {
-
     render() {
         const date = new Date();
         const today = date.getUTCMonth() + 1 + '/' + date.getFullYear();
+
         return (
             <View style={styles.container}>
                 <View>
@@ -20,8 +20,7 @@ class ProfileShortInfo extends PureComponent {
                     <Text>Joined { today }</Text>
                 </View>
             </View>
-        )
-
+        );
     }
 }
 
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         backgroundColor: 'white',
-        maxHeight: 20
+        maxHeight: 40,
     },
     avatar: {
         marginTop: -25,
@@ -45,7 +44,9 @@ const styles = StyleSheet.create({
         marginRight: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingTop: 10,
+        paddingBottom: 10,
     }
 });
 
-export {ProfileShortInfo};
+export { ProfileShortInfo };
