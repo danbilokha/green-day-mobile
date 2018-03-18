@@ -6,7 +6,6 @@ import {Chart} from '../../chart/Chart';
 import {Rewards} from '../../rewards/Rewards';
 
 class Body extends PureComponent {
-
     render() {
         return (
             <View style={styles.container}>
@@ -61,4 +60,4 @@ const styles = StyleSheet.create({
 });
 
 
-export {Body};
+export { Body };

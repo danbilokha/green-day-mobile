@@ -17,7 +17,7 @@ class Header extends PureComponent {
                         source={require('../../../assets/images/profile/avatar.png')}
                     />
                 </View>
-                <ProfileShortInfo/>
+                <ProfileShortInfo />
             </View>
         )
 
