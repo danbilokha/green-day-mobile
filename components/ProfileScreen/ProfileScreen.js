@@ -6,12 +6,12 @@ import { Body } from './body/Body';
 class ProfileScreen extends React.Component {
     render() {
         return (
-            <View style={styles.container}>
-                <ScrollView>
-                    <Header />
-                    <Body />
-                </ScrollView>
-            </View>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Header/>
+                    <Body/>
+                </View>
+            </ScrollView>
         );
     }
 }
