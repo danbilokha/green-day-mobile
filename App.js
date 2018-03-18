@@ -5,8 +5,6 @@ import {Provider} from 'react-redux';
 import Login from './components/Login';
 import Entry from './components/navigation/Navigation';
 
-import './app/settings/notification.settings';
-import './app/data/remote';
 import {store} from './app/data/store';
 
 const Application = StackNavigator(
