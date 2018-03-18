@@ -44,8 +44,9 @@
 //     date: new Date(Date.now() + (60 * 1000)) // in 60 secs
 // });
 
+import { DeviceEventEmitter } from 'react-native';
 import PushNotificationAndroid from 'react-native-push-notification';
-import {DeviceEventEmitter} from 'react-native';
+import { receiveNotification } from '../data/store';
 
 (function () {
     // Register all the valid actions for notifications here and add the action handler for each action
@@ -65,10 +66,12 @@ import {DeviceEventEmitter} from 'react-native';
 })();
 
 export function notify(notification, delay = 1000) {
+    const date = new Date(Date.now() + delay);
     PushNotificationAndroid.localNotificationSchedule({
-        message: notification, // (required)
-        date: new Date(Date.now() + delay)
+        message: notification,
+        date,
     });
+    receiveNotification(notification, date.toLocaleTimeString());
 }
 
 //WORKED APP

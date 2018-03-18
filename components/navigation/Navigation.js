@@ -8,6 +8,7 @@ import {TabBarTop, TabNavigator} from 'react-navigation';
 import Icon from '../Icon';
 import HomeScreen from '../HomeScreen';
 import NotificationScreen from '../NotificationScreen';
+import { store } from '../../app/data/store';
 import '../../app/settings/notification.settings';
 import '../../app/data/remote';
 
@@ -33,7 +34,20 @@ export default TabNavigator(
                 }
 
                 if (routeName === 'Notifications') {
+                    const notifications = store.getState().notifications;
                     iconName = 'Notifications';
+
+                    return (
+                        <View style={{ position: 'relative' }}>
+                            <View style={{ width: 15, height: 15, backgroundColor: '#00aaa5'}}>
+                                {
+                                    notifications && notifications.length > 0 &&
+                                    <Text>{notifications.length}</Text>
+                                }
+                            </View>
+                            <Icon name={iconName} size={25} fill={tintColor}/>
+                        </View>
+                    );
                 }
 
                 if (routeName === 'Profile') {
@@ -73,7 +87,7 @@ export default TabNavigator(
             },
             style: {
                 backgroundColor: 'transparent',
-                marginTop: Platform.OS === 'ios' ? 25 : 50,
+                marginTop: Platform.OS === 'ios' ? 25 : 35,
             },
             tabBar: {
                 backgroundColor: '#fbfbfb',

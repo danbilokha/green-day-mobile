@@ -1,4 +1,6 @@
-import {combineReducers, createStore} from 'redux'
+import { combineReducers, createStore } from 'redux'
+
+export const NOTIFICATION_RECEIVED = 'NOTIFICATION_RECEIVED';
 
 const defaultRemoteState = {
     REMOTE_FEED: null,
@@ -9,6 +11,8 @@ const defaultRemoteState = {
 const defaultUserState = {
     USER: null,
 };
+
+const defaultNotificationsState = [];
 
 const user = (state = defaultUserState, action) => {
     switch (action.type) {
@@ -44,9 +48,23 @@ const remote = (state = defaultRemoteState, action) => {
     }
 };
 
-let store = createStore(combineReducers({
+const notifications = (state = defaultNotificationsState, { type, payload }) => {
+    switch (type) {
+        case NOTIFICATION_RECEIVED:
+            return [...state, {...payload}];
+        default:
+            return state;
+    }
+};
+
+const store = createStore(combineReducers({
     remote,
-    user
+    user,
+    notifications
 }));
 
-export {store};
+export const receiveNotification = (notification, date) => {
+    store.dispatch({ type: NOTIFICATION_RECEIVED, payload: { notification, date } });
+};
+
+export { store };

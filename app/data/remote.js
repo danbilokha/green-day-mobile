@@ -1,8 +1,8 @@
-import {store} from './store';
 import io from 'socket.io-client';
 import axios from 'axios';
-import {addDataPoint} from './remote.calculation';
-import {notify} from '../settings/notification';
+import { addDataPoint } from './remote.calculation';
+import { notify } from '../settings/notification';
+import { store } from './store';
 
 let timeout,
     countShowError = 0,
