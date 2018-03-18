@@ -7,6 +7,7 @@ import {TabBarTop, TabNavigator} from 'react-navigation';
 import Icon from '../Icon';
 import HomeScreen from '../HomeScreen';
 import NotificationScreen from '../NotificationScreen';
+import { store } from '../../app/data/store';
 
 export default TabNavigator(
     {
@@ -30,7 +31,20 @@ export default TabNavigator(
                 }
 
                 if (routeName === 'Notifications') {
+                    const notifications = store.getState().notifications;
                     iconName = 'Notifications';
+
+                    return (
+                        <View style={{ position: 'relative' }}>
+                            <View style={{ width: 15, height: 15, backgroundColor: '#00aaa5'}}>
+                                {
+                                    notifications && notifications.length > 0 &&
+                                    <Text>{notifications.length}</Text>
+                                }
+                            </View>
+                            <Icon name={iconName} size={25} fill={tintColor}/>
+                        </View>
+                    );
                 }
 
                 if (routeName === 'Profile') {
