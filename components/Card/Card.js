@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import {window} from '../global/global.calculation';
@@ -7,12 +7,12 @@ import {window} from '../global/global.calculation';
 class Card extends PureComponent {
 
     renderTitle = () => this.props.title
-        ? <View styles={styles.title}> {this.props.title} </View>
+        ? <Text style={styles.title}> {this.props.title} </Text>
         : null;
 
     render() {
         return (
-            <View style={{...styles.container, ...this.props.style}}>
+            <View style={[styles.container, !!this.props.style ? this.props.style : {}]}>
                 {this.renderTitle()}
                 {this.props.children}
             </View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     title: {
         backgroundColor: '#00aaa5',
-        height: 30
+        height: 20
     }
 });
 
