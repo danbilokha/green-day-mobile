@@ -11,6 +11,7 @@ export class Dashboard extends React.Component {
         userData: []
     };
 
+
     componentDidMount() {
         store.subscribe(() => {
             this.setState({
@@ -19,12 +20,25 @@ export class Dashboard extends React.Component {
         });
     }
 
+    oneArrDeep = (userData) => {
+        if (!userData)
+            return;
+
+        const arr = [];
+        for (let i = 0, len = userData.length; i < len; i += 1) {
+            arr.push(userData[i][1]);
+        }
+        return arr;
+    };
+
     calculateTodayData = () => {
-        console.log(this.state.userData);
-    }
+        if(this.state.userData && this.state.userData.length !== 0) {
+            return this.state.userData.reduce((prev, curr) => curr += prev, 0).toFixed(2) + ' kW';
+        }
+        return "No data"
+    };
 
     render() {
-        console.log(this.calculateTodayData());
         return (
             <View style={styles.container}>
                 <ScrollView>
@@ -32,7 +46,7 @@ export class Dashboard extends React.Component {
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', padding: 15}}>
                         <DashboardGenerateBox
                             title="generate today:"
-                            value="1.32kW"
+                            value={this.calculateTodayData()}
                             style={{marginRight: 10}}/>
                         <DashboardGenerateBox title="generate May:" value="12.32kW" style={{marginRight: 0}}/>
                     </View>

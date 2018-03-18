@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         maxWidth: window.width,
         height: 'auto',
         margin: 5,
-
+        padding: 2
     },
     title: {
         backgroundColor: '#00aaa5',

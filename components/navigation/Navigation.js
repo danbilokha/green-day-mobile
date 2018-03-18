@@ -1,23 +1,24 @@
 import React from 'react';
 import {Dashboard} from '../Dashboard';
-import { Image, StyleSheet, Text, Platform } from 'react-native';
-import firebase from "firebase";
+import {Image, StyleSheet, Text, Platform, View} from 'react-native';
+import firebase from 'firebase';
 
 import {ProfileScreen} from '../ProfileScreen/ProfileScreen';
 import {TabBarTop, TabNavigator} from 'react-navigation';
 import Icon from '../Icon';
 import HomeScreen from '../HomeScreen';
 import NotificationScreen from '../NotificationScreen';
-import { store } from '../../app/data/store';
+import {store} from '../../app/data/store';
+
 import '../../app/settings/notification.settings';
-import '../../app/data/remote';
+import {StoreSubscribe} from '../../app/data/StoreSubscribe'; // TODO: Move notification
 
 export default TabNavigator(
     {
-        Dash: { screen: Dashboard },
-        Notifications: { screen: NotificationScreen },
-        Home: { screen: HomeScreen },
-        Profile: { screen: ProfileScreen },
+        Dash: {screen: Dashboard},
+        Notifications: {screen: NotificationScreen},
+        Home: {screen: HomeScreen},
+        Profile: {screen: ProfileScreen},
     },
     {
         navigationOptions: ({navigation}) => ({
@@ -36,17 +37,21 @@ export default TabNavigator(
                 if (routeName === 'Notifications') {
                     const notifications = store.getState().notifications;
                     iconName = 'Notifications';
-
                     return (
-                        <View style={{ position: 'relative' }}>
-                            <View style={{ width: 15, height: 15, backgroundColor: '#00aaa5'}}>
-                                {
-                                    notifications && notifications.length > 0 &&
-                                    <Text>{notifications.length}</Text>
+                        <StoreSubscribe>
+                            {
+                                ({ notifications }) => {
+                                    return (
+                                        <View style={{position: 'relative'}}>
+                                            <Text style={{width: 15, height: 15, position: 'absolute', top: 10, right: 10}}>
+                                                {notifications.length}
+                                            </Text>
+                                            <Icon name={iconName} size={25} fill={tintColor}/>
+                                        </View>
+                                    )
                                 }
-                            </View>
-                            <Icon name={iconName} size={25} fill={tintColor}/>
-                        </View>
+                            }
+                        </StoreSubscribe>
                     );
                 }
 

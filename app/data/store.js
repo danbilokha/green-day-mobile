@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from 'redux'
 
 export const NOTIFICATION_RECEIVED = 'NOTIFICATION_RECEIVED';
+export const NOTIFICATIONS_READ = 'NOTIFICATIONS_READ';
 
 const defaultRemoteState = {
     REMOTE_FEED: null,
@@ -12,7 +13,10 @@ const defaultUserState = {
     USER: null,
 };
 
-const defaultNotificationsState = [];
+const defaultNotificationsState = {
+    data: [],
+    countToShow: 0,
+};
 
 const user = (state = defaultUserState, action) => {
     switch (action.type) {
@@ -51,7 +55,16 @@ const remote = (state = defaultRemoteState, action) => {
 const notifications = (state = defaultNotificationsState, { type, payload }) => {
     switch (type) {
         case NOTIFICATION_RECEIVED:
-            return [...state, {...payload}];
+            return {
+                ...state,
+                data: [...state.data, {...payload}],
+                countToShow: state.countToShow + 1,
+            };
+        case NOTIFICATIONS_READ:
+            return {
+                ...state,
+                countToShow: 0,
+            };
         default:
             return state;
     }
@@ -65,6 +78,10 @@ const store = createStore(combineReducers({
 
 export const receiveNotification = (notification, date) => {
     store.dispatch({ type: NOTIFICATION_RECEIVED, payload: { notification, date } });
+};
+
+export const readNotifications = () => {
+    store.dispatch({ type: NOTIFICATIONS_READ, });
 };
 
 export { store };

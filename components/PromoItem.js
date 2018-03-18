@@ -4,7 +4,6 @@ import Icon from './Icon';
 
 class PromoItem extends Component {
     render() {
-        console.log("123123123");
         const { icon, description } = this.props;
         return (
             <View style={styles.root}>

@@ -14,6 +14,7 @@ import {Input} from './Input';
 import {Button} from './Button';
 import {Header} from './Header';
 import {store} from '../app/data/store';
+import {executeRemote} from '../app/data/remote';
 
 export default class Login extends React.Component {
     state = {
@@ -33,6 +34,7 @@ export default class Login extends React.Component {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 store.dispatch({type: 'LOGINED_USER', payload: user.uid});
+                executeRemote();
                 this.props.navigation.navigate('Entry');
             }
         });
@@ -57,10 +59,11 @@ export default class Login extends React.Component {
                 this.setState({
                     authenticating: false,
                 });
+
                 this.props.navigation.navigate('Entry');
             })
             .catch(() => {
-                alert(123);
+                alert('Wrong credentials');
                 this.setState({
                     authenticating: false,
                 });

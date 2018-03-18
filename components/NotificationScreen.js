@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, Text } from 'react-native';
-import Promo from './Promo';
-import { Header } from './ProfileScreen/header/Header';
-import { store } from '../app/data/store';
+import React, {Component} from 'react';
+import {View, ScrollView, StyleSheet, Text} from 'react-native';
+import {Header} from './ProfileScreen/header/Header';
+import {store} from '../app/data/store';
+import {Card} from './Card/Card';
 
 class NotificationScreen extends Component {
     state = {
@@ -17,21 +17,27 @@ class NotificationScreen extends Component {
         });
     }
 
-    render() {
-        const { notifications } = this.state;
+    componentWillUnmount() {
+        console.log('here');
+    }
 
-        return(
+    render() {
+        const {notifications} = this.state;
+        return (
             <ScrollView>
                 <View style={styles.container}>
-                    <Header />
+                    <Header/>
                     {
                         (notifications && notifications.length > 0) ?
-                        notifications.map(({ notification, date }) => (
-                            <View style={{flexDirection: 'row'}}>
-                                <Text>{date}</Text> <Text>{notification}</Text>
-                            </View>
-                        )) :
-                        <Text style={{ marginTop: 10 }}>You have no notifications</Text>
+                            notifications.map(({notification, date}, index) => (
+                                <Card key={index}>
+                                    <View style={{flexDirection: 'column'}}>
+                                        <Text>{date}</Text>
+                                        <Text>{notification}</Text>
+                                    </View>
+                                </Card>
+                            )) :
+                            <Text style={{marginTop: 10}}>You have no notifications</Text>
                     }
                 </View>
             </ScrollView>
