@@ -72,10 +72,10 @@ class Chart extends PureComponent {
                     }
 
                     let data = [];
-                    for (let i = 1, len = arr.length; i <= len; i += 1) {
-                        data.push({
+                    for (let i = 0, len = arr.length; i < len; i += 1) {
+                        data.unshift({
                             x: new Date().getUTCMinutes() * i * 1000,
-                            y: arr[len - i] | []
+                            y: arr[i] | []
                         });
                     }
 

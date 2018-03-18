@@ -1,14 +1,17 @@
 import {store} from './store';
 import io from 'socket.io-client';
 import axios from 'axios';
-import PushNotificationAndroid from 'react-native-push-notification';
-import { addDataPoint } from './remote.calculation';
+import {addDataPoint} from './remote.calculation';
+import {notify} from '../settings/notification';
 
 const socket = io.connect('http://10.17.166.219:3001/');
-let timeout;
+
+let timeout,
+    countShowError = 0,
+    countMaxErrorOccured = 1;
 
 axios.get('http://10.17.166.219:3001/api/feed/uids')
-    .then(({ data: uids_remote }) => {
+    .then(({data: uids_remote}) => {
         const uids = uids_remote.map(i => i.uid);
         const dataPoints = {};
 
@@ -20,31 +23,30 @@ axios.get('http://10.17.166.219:3001/api/feed/uids')
     })
     .then(([uids, dataPoints]) => {
         socket.on('data', (data) => {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            
             store.dispatch({type: 'REMOTE_DATA', payload: data});
 
             uids.forEach(uid => {
                 dataPoints[uid] = addDataPoint(dataPoints[uid], data[uid])
             });
 
-            store.dispatch({ type: 'SORTED_REMOTE_DATA', payload: dataPoints });
+            store.dispatch({type: 'SORTED_REMOTE_DATA', payload: dataPoints});
 
-            timeout = setTimeout(() => {
-                PushNotificationAndroid.localNotificationSchedule({
-                    message: 'There is no incoming data from the server...',
-                    date: 1000,
-                });        
-            }, 5000);
+            if(countShowError < countMaxErrorOccured) {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(() => {
+                    notify('There is no incoming data from the server...');
+                    countShowError += 1;
+                }, 5000);
+            }
         });
     })
     .catch(error => {
-        console.log(error);
-        PushNotificationAndroid.localNotificationSchedule({
-            message: 'Network connection was corrupted.',
-            date: 1000,
-        });
+        if(countShowError < countMaxErrorOccured) {
+            notify('Network connection was corrupted.');
+            countShowError += 1;
+        }
     });
 
+setInterval(() => countShowError = 0, 60000);
