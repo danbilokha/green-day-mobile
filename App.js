@@ -1,10 +1,12 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
+import {Provider} from 'react-redux';
 
 import Login from './components/Login';
 import Entry from './components/navigation/Navigation';
 
-import './app/data/data';
+import './app/data/remote';
+import {store} from './app/data/store';
 import './app/settings/notification';
 
 const Application = StackNavigator(
@@ -22,7 +24,9 @@ const Application = StackNavigator(
 export default class App extends React.Component {
     render() {
         return (
-            <Application/>
+            <Provider store={store}>
+                <Application/>
+            </Provider>
         );
     }
 }

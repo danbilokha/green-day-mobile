@@ -5,8 +5,11 @@ import {Card} from '../../Card/Card';
 import {Chart} from '../../chart/Chart';
 import {Rewards} from '../../rewards/Rewards';
 
+import {store} from '../../../app/data/store';
+
 class Body extends PureComponent {
     render() {
+        console.log(store.getState());
         return (
             <View style={styles.container}>
                 <Rewards
@@ -60,4 +63,4 @@ const styles = StyleSheet.create({
 });
 
 
-export { Body };
+export {Body};
