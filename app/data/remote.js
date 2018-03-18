@@ -13,7 +13,7 @@ axios.get('http://10.17.166.219:3001/api/feed/uids')
 
         uids.forEach(uid => dataPoints[uid] = []);
 
-        store.dispatch({type: 'UIDSS', payload: uids});
+        store.dispatch({type: 'UIDS', payload: uids});
 
         return [uids, dataPoints];
     })

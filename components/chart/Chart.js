@@ -12,26 +12,25 @@ class Chart extends PureComponent {
     }
 
     render() {
-
+        const arr = this.props.data;
         let Highcharts = 'Highcharts';
-
         let conf = {
-            chart: {
-                type: 'spline',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function () {
-                        // set up the updating of the chart each second
-                        let series = this.series[0];
-                        setInterval(function () {
-                            let x = (new Date()).getTime(), // current time
-                                y = Math.random();
-                            series.addPoint([x, y], true, true);
-                        }, 1000);
-                    }
-                }
-            },
+            // chart: {
+            //     type: 'spline',
+            //     animation: Highcharts.svg, // don't animate in old IE
+            //     marginRight: 10,
+            //     events: {
+            //         load: function () {
+            //             // set up the updating of the chart each second
+            //             let series = this.series[0];
+            //             setInterval(function () {
+            //                 let x = (new Date()).getTime(), // current time
+            //                     y = Math.random();
+            //                 series.addPoint([x, y], true, true);
+            //             }, 1000);
+            //         }
+            //     }
+            // },
             title: {
                 text: this.props.title
             },
@@ -40,7 +39,7 @@ class Chart extends PureComponent {
                     text: this.props.xAxisTitle
                 },
                 type: 'datetime',
-                tickPixelInterval: 150
+                tickPixelInterval: 10000
             },
             yAxis: {
                 title: {
@@ -66,20 +65,21 @@ class Chart extends PureComponent {
                 enabled: false
             },
             series: [{
-                name: 'Random data',
+                name: 'Data',
                 data: (function () {
-                    // generate an array of random data
-                    let data = [],
-                        time = (new Date()).getTime(),
-                        i;
+                    if(!arr || !arr.length) {
+                        return [];
+                    }
 
-                    for (i = -19; i <= 0; i += 1) {
+                    let data = [];
+                    for (let i = 1, len = arr.length; i <= len; i += 1) {
                         data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
+                            x: new Date().getUTCMinutes() * i * 1000,
+                            y: arr[len - i] | []
                         });
                     }
-                    return data;
+
+                    return data.reverse();
                 }())
             }]
         };

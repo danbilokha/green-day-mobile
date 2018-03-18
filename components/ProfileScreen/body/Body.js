@@ -8,8 +8,31 @@ import {Rewards} from '../../rewards/Rewards';
 import {store} from '../../../app/data/store';
 
 class Body extends PureComponent {
+
+    state = {
+        userData: []
+    };
+
+    componentDidMount() {
+        store.subscribe(() => {
+            this.setState({
+                userData: this.oneArrDeep(store.getState().remote.SORTED_REMOTE_DATA[store.getState().user.USER])
+            });
+        });
+    }
+
+    oneArrDeep = (userData) => {
+        if(!userData)
+            return;
+
+        const arr = [];
+        for(let i = 0, len = userData.length; i < len; i += 1) {
+            arr.push(userData[i][1]);
+        }
+        return arr;
+    }
+
     render() {
-        console.log(store.getState());
         return (
             <View style={styles.container}>
                 <Rewards
@@ -28,23 +51,10 @@ class Body extends PureComponent {
                 <Card
                     title="Current solar system state">
                     <Chart
+                        data={this.state.userData}
                         title="Solar Employment Growth"
                         yAxisTitle="title1"
                         xAxisTitle="title2"
-                    />
-                </Card>
-                <Card>
-                    <Chart
-                        title="Current solar system state 2"
-                        yAxisTitle="title55"
-                        xAxisTitle="title4"
-                    />
-                </Card>
-                <Card>
-                    <Chart
-                        title="Current solar system state 2"
-                        yAxisTitle="title5"
-                        xAxisTitle="title4"
                     />
                 </Card>
             </View>
