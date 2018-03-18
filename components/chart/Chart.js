@@ -13,9 +13,9 @@ class Chart extends PureComponent {
 
     render() {
 
-        let Highcharts='Highcharts';
+        let Highcharts = 'Highcharts';
 
-        let conf={
+        let conf = {
             chart: {
                 type: 'spline',
                 animation: Highcharts.svg, // don't animate in old IE
@@ -96,7 +96,7 @@ class Chart extends PureComponent {
 
         return (
             <View style={styles.container}>
-                <ChartView style={{height:300}} config={conf} options={options}></ChartView>
+                <ChartView style={{height: 300}} config={conf} options={options}></ChartView>
             </View>
         )
     }

@@ -13,6 +13,7 @@ import firebase from 'firebase';
 import {Input} from './Input';
 import {Button} from './Button';
 import {Header} from './Header';
+import {store} from '../app/data/store';
 
 export default class Login extends React.Component {
     state = {
@@ -30,9 +31,8 @@ export default class Login extends React.Component {
         firebase.initializeApp(firebaseConfig);
 
         firebase.auth().onAuthStateChanged((user) => {
-            console.log('user: ', user);
-
             if (user) {
+                store.dispatch({type: 'LOGINED_USER', payload: user.uid});
                 this.props.navigation.navigate('Entry');
             }
         });

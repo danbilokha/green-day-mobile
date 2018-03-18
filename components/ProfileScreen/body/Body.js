@@ -1,32 +1,52 @@
-import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Chart } from '../../chart/Chart';
+import React, {PureComponent} from 'react';
+import {View, StyleSheet} from 'react-native';
+
+import {Card} from '../../Card/Card';
+import {Chart} from '../../chart/Chart';
+import {Rewards} from '../../rewards/Rewards';
+
+import {store} from '../../../app/data/store';
 
 class Body extends PureComponent {
     render() {
-        return (     
+        console.log(store.getState());
+        return (
             <View style={styles.container}>
-                <View>
+                <Rewards
+                    text="Winner March 2018"
+                    color="gray"
+                />
+                <Rewards
+                    text="Winner November 2018"
+                    color="blue"
+                />
+                <Rewards
+                    text="Winner October 2018"
+                    color="yellow"
+                />
+
+                <Card
+                    title="Current solar system state">
                     <Chart
-                        title="Current solar system state"
+                        title="Solar Employment Growth"
                         yAxisTitle="title1"
                         xAxisTitle="title2"
                     />
-                </View>
-                <View>
+                </Card>
+                <Card>
                     <Chart
                         title="Current solar system state 2"
                         yAxisTitle="title55"
                         xAxisTitle="title4"
                     />
-                </View>
-                <View>
+                </Card>
+                <Card>
                     <Chart
                         title="Current solar system state 2"
                         yAxisTitle="title5"
                         xAxisTitle="title4"
                     />
-                </View>
+                </Card>
             </View>
         )
     }
@@ -34,7 +54,7 @@ class Body extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
+        marginTop: 5,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -43,4 +63,4 @@ const styles = StyleSheet.create({
 });
 
 
-export { Body };
+export {Body};
