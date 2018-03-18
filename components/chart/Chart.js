@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import ChartView from 'react-native-highcharts';
 import PropTypes from 'prop-types';
 
-import {window} from '../global/global.calculation';
+import {window} from '/Chart.calculation';
 
 class Chart extends PureComponent {
 

@@ -2,33 +2,34 @@ import React, {PureComponent} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import {Chart} from '../../chart/Chart';
+import {Card} from '../../Card/Card';
 
 class Body extends PureComponent {
 
     render() {
         return (
             <View style={styles.container}>
-                <View>
+                <Card>
                     <Chart
                         title="Current solar system state"
                         yAxisTitle="title1"
                         xAxisTitle="title2"
                     />
-                </View>
-                <View>
+                </Card>
+                <Card>
                     <Chart
                         title="Current solar system state 2"
                         yAxisTitle="title55"
                         xAxisTitle="title4"
                     />
-                </View>
-                <View>
+                </Card>
+                <Card>
                     <Chart
                         title="Current solar system state 2"
                         yAxisTitle="title5"
                         xAxisTitle="title4"
                     />
-                </View>
+                </Card>
             </View>
         )
     }
