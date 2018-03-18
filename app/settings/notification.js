@@ -50,7 +50,7 @@ import {DeviceEventEmitter} from 'react-native';
 (function() {
     // Register all the valid actions for notifications here and add the action handler for each action
     PushNotificationAndroid.registerNotificationActions(['Accept','Reject','Yes','No']);
-    DeviceEventEmitter.addListener('notificationActionReceived', function(action){
+    DeviceEventEmitter.addListener('notificationActionReceived', function(action) {
         console.log ('Notification action received: ' + action);
         const info = JSON.parse(action.dataJSON);
         if (info.action == 'Accept') {
