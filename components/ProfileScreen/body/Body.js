@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Promo from '../Promo';
 import { Chart } from '../../chart/Chart';
 
 class Body extends PureComponent {
     render() {
-        return (
+        return (     
             <View style={styles.container}>
-                <Promo />
                 <View>
                     <Chart
                         title="Current solar system state"

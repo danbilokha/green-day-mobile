@@ -1,17 +1,19 @@
 import React from 'react';
 import {Dashboard} from '../Dashboard';
-import {Image, StyleSheet, Text} from 'react-native';
+import { Image, StyleSheet, Text, Platform } from 'react-native';
 import firebase from "firebase";
 import {ProfileScreen} from '../ProfileScreen/ProfileScreen';
 import {TabBarTop, TabNavigator} from 'react-navigation';
 import Icon from '../Icon';
+import HomeScreen from '../HomeScreen';
+import NotificationScreen from '../NotificationScreen';
 
 export default TabNavigator(
     {
-        Dash: {screen: Dashboard},
-        Notifications: {screen: Dashboard},
-        Home: {screen: Dashboard},
-        Profile: {screen: ProfileScreen},
+        Dash: { screen: Dashboard },
+        Notifications: { screen: NotificationScreen },
+        Home: { screen: HomeScreen },
+        Profile: { screen: ProfileScreen },
     },
     {
         navigationOptions: ({navigation}) => ({
@@ -68,7 +70,7 @@ export default TabNavigator(
             },
             style: {
                 backgroundColor: 'transparent',
-                marginTop: 25,
+                marginTop: Platform.OS === 'ios' ? 25 : 50,
             },
             tabBar: {
                 backgroundColor: '#fbfbfb',

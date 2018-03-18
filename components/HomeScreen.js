@@ -1,15 +1,15 @@
-import React from 'react';
-import { Image, StyleSheet, View, ScrollView } from 'react-native';
-import { Header } from './header/Header';
-import { Body } from './body/Body';
+import React, { Component } from 'react';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import Promo from './Promo';
+import { Header } from './ProfileScreen/header/Header';
 
-class ProfileScreen extends React.Component {
+class HomeScreen extends Component {
     render() {
-        return (
+        return(
             <ScrollView>
                 <View style={styles.container}>
                     <Header />
-                    <Body />
+                    <Promo />
                 </View>
             </ScrollView>
         );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-    },
+    }
 });
 
-export { ProfileScreen };
+export default HomeScreen;
