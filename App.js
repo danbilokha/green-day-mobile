@@ -1,7 +1,9 @@
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
+
 import Login from './components/Login';
 import Entry from './components/navigation/Navigation';
+import './app/settings/notification';
 
 const Application = StackNavigator(
     {

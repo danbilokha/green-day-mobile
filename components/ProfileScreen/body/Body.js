@@ -51,7 +51,7 @@ class Body extends PureComponent {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
+        marginTop: 5,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
