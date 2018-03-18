@@ -70,7 +70,7 @@ export default TabNavigator(
             },
             style: {
                 backgroundColor: 'transparent',
-                marginTop: Platform.OS === 'ios' ? 25 : 50,
+                marginTop: Platform.OS === 'ios' ? 25 : 35,
             },
             tabBar: {
                 backgroundColor: '#fbfbfb',

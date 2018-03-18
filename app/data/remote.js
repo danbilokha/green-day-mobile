@@ -1,8 +1,8 @@
-import {store} from './store';
 import io from 'socket.io-client';
 import axios from 'axios';
-import {addDataPoint} from './remote.calculation';
-import {notify} from '../settings/notification';
+import { addDataPoint } from './remote.calculation';
+import { notify } from '../settings/notification';
+import { store } from './store';
 
 const socket = io.connect('http://10.17.166.219:3001/');
 
