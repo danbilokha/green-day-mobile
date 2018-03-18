@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import {Chart} from '../../chart/Chart';
 import {Card} from '../../Card/Card';
+import {Chart} from '../../chart/Chart';
 
 class Body extends PureComponent {
 

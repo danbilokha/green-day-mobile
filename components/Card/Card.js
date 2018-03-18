@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {StyleSheet, View} from 'react-native';
 import PropTypes from 'prop-types';
 
-import {window} from '/Chart.calculation';
+import {window} from '../global/global.calculation';
 
 class Card extends PureComponent {
 
@@ -12,10 +12,11 @@ class Card extends PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={{...styles.container, ...this.props.style}}>
                 {this.renderTitle()}
                 {this.props.children}
             </View>
+
         )
     }
 }
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         maxWidth: window.width,
         height: 'auto',
         margin: 5,
-        ...this.props.style,
+
     },
     title: {
         backgroundColor: '#00aaa5',
@@ -34,7 +35,8 @@ const styles = StyleSheet.create({
 });
 
 Card.propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    props: PropTypes.object
 };
 
 export {Card};
